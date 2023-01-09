@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Xac nhan xoa dich vu phong</title>
+</head>
+<body>
+	<h1>Bạn có chắc muốn xóa danh mục phòng tên
+		<span th:text=${serDTO.name}></span>?
+	</h1>
+	
+	<button>
+		<a th:href="@{/admin/deleteServiceInRoomSuccess(id=${serDTO.id})}">Chắc chắn</a>
+	</button>
+	<button>
+		<a th:href="@{/admin/serviceInRoomList}">Không</a>
+	</button>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach phong</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Danh sách phòng đáp ứng</h1>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Mã phòng</th>
+				<th class="th-title bg-primary">Tên phòng</th>
+				<th class="th-title bg-primary">Loại phòng</th>
+				<th class="th-title bg-primary">Giá phòng</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="room: ${roomDTOs}">
+				<td th:text="${room.id}"></td>
+				<td th:text="${room.name}"></td>
+				<td th:text="${room.roomTypeDTO.name}"></td>
+				<td> <span th:text="${room.roomTypeDTO.price}"></span>00 VNĐ </td>
+				<td>
+					<a class="option-from-user" 
+						th:href="@{/admin/selectRooms(idOrder = ${orderRoom.id}, idRoom = ${room.id})}">
+						Chọn vào đơn</a> |
+					<a class="option-from-user" th:href="@{/admin/infoRoom/__${room.id}__}">Chi tiết</a>
+				</td>
+			</tr>
+		</table>
+		
+		<a th:href=@{/admin/info-orderRoom/__${orderRoom.id}__}>Quay lại</a>
+		
+	</div>
+</body>
+</html>

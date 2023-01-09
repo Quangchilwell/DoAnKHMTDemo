@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach dich vu phong</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Danh sách dịch vụ phòng</h1>
+		
+		<form tth:action="/admin/searchingList" method="get" style="margin-bottom: 20px">
+			<input type="search" name="infoSearch"/>
+			<button>Tìm kiếm</button>
+		</form>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Mã dịch vụ</th>
+				<th class="th-title bg-primary">Tên dịch vụ</th>
+				<th class="th-title bg-primary">Giá tiền</th>
+				<th class="th-title bg-primary">Đơn vị tính</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="ser: ${serDTOs}">
+				<td th:text="${ser.id}"></td>
+				<td th:text="${ser.name}"></td>
+				<td> <span th:text="${ser.price}"></span>00 VNĐ</td>
+				<td th:text="${ser.unit}"></td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/updateServiceInRoom/__${ser.id}__}">Sửa</a> |
+					<a class="option-from-user" th:href="@{/admin/deleteServiceInRoom/__${ser.id}__}">Xóa</a>
+				</td>
+			</tr>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/serviceInRoomList}">Quay lại danh sách dịch vụ phòng</a>
+		</button>
+	
+	</div>
+</body>
+</html>

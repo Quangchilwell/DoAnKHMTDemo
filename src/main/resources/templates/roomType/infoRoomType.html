@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Chi tiết danh mục phòng</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<tr>
+					<th>Mã danh mục</th>
+					<td th:text="${typeDTO.id}"></td>
+				</tr>
+				
+				<tr>
+					<th>Hình ảnh</th>
+					<td>
+						<img style="width: 100px" th:src="@{/img/imgRoomType/__${typeDTO.image}__}" />
+					</td>
+				</tr>
+				
+				<tr>
+					<th>Tên danh mục</th>
+					<td th:text="${typeDTO.name}"></td>
+				</tr>
+				
+				<tr>
+					<th>Giá</th>				
+					<td>
+						<span th:text="${#numbers.formatDecimal(typeDTO.price, 0, 'COMMA', 0, 'POINT')}">
+						1,145,000
+						</span> VNĐ
+					</td>
+				</tr>
+				
+				<tr>
+					<th>Ghi chú</th>
+					<td th:text="${typeDTO.description}"></td>
+				</tr>
+				
+			</table>
+			
+			<button>
+				<a th:href="@{/admin/room-type-list}">Danh sách danh mục phòng</a>
+			</button>
+		</div>
+	</div>
+</body>
+</html>

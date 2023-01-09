@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Chi tiết khu nhà</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<tr>
+					<th>Mã khu nhà</th>
+					<td th:text="${housingDTO.id}"></td>
+				</tr>
+				
+				<tr>
+					<th>Tên khu nhà</th>
+					<td th:text="${housingDTO.name}"></td>
+				</tr>
+				
+				<tr>
+					<th>Số tầng</th>
+					<td th:text="${housingDTO.floorsQuantity}"></td>
+				</tr>
+				
+				<tr>
+					<th>Tổng số phòng trong khu</th>
+					<td th:text="${roomsQuantity}"></td>
+				</tr>
+				
+				<tr>
+					<th>Ghi chú</th>
+					<td th:text="${housingDTO.description}"></td>
+				</tr>
+				
+			</table>
+			
+			<button>
+				<a th:href="@{/admin/housing-list}">Danh sách khu nhà</a>
+			</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach trang thai</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<form th:action="@{/admin/action-all-status}" method="post" class="container">		
+		<div class="header-list-wrapper">
+			<h1>Thùng rác</h1>
+			<a th:href="@{/admin/status-list}">Danh sách trạng thái phòng</a>	
+			<div style="display: flex; align-items: center;" class="select-list">
+				<div class="checkbox">
+				  <label style="width: 100px;"><input class="select-all" type="checkbox" value="">Chọn tất cả</label>
+				</div>
+				
+				 <select style="text-align: center;" name="action" class="form-control select-action" id="sel1">
+				   <option value="">-----Lựa chọn-----</option>
+				   <option value="restore">Khôi phục</option>
+				 </select>
+				  
+				 <button class="btn btn-primary btn-sm check-all-submit-btn" disabled="disabled">Thực hiện</button>
+			</div>
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th style="width: 60px;" class="th-title bg-primary">Chọn</th>
+				<th class="th-title bg-primary">ID</th>
+				<th class="th-title bg-primary">Tên trạng thái</th>
+				<th class="th-title bg-primary">Ngày tạo</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="status: ${statusDTOs}">
+				<td>
+					<input class="select-item" name="idRecords[]" type="checkbox" th:value="${status.id}"/>
+				</td>
+				<td th:text="${status.id}"></td>
+				<td th:text="${status.name}"></td>
+				<td th:text="${status.createAt}"></td>
+				<td>
+					<a class="option-from-user btn-restore" th:dataid="${status.id}" href="">Khôi phục</a> |
+					<a 
+						class="option-from-user btn-force-delete btn-force-delete" 
+						th:dataid="${status.id}" 
+						data-toggle="modal" 
+						data-target="#myModal"
+						href="">Xóa bỏ</a> 
+				</td>
+			</tr>
+			<td th:if="${size == 0}" colspan="5" class="text-center">
+	           Thùng rác trống
+	           <a th:href="@{/admin/status-list}">Danh sách trạng thái phòng </a>
+	        </td>
+		</table>
+		
+		
+		<button>
+			<a th:href="@{/admin/add-status}">Thêm mới trạng thái</a>
+		</button>
+	</form>
+	
+	<form action="/admin/restore-status/" name="restore-form" method="post"></form>
+	<form action="/admin/force-delete-status/" name="force-delete-form" method="post"></form>
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+
+</body>
+</html>

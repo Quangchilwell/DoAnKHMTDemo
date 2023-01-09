@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Thêm danh mục phòng</title>
+	<link rel="stylesheet" th:href="@{/css/form.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container main">
+		<form th:action="@{/admin/addRoomType}" method="post" 
+		th:object="${roomTypeDTO}" class="form" id="form-add-roomType" enctype="multipart/form-data">
+			<h3 class="heading">Thêm mới danh mục phòng</h3>
+        	<div class="spacer"></div>
+        	
+
+        	<p style="color: red;" th:if="${error} != null">Danh mục phòng này đã có rồi !</p>
+        	
+        	<div class="form-group">
+				<label for="name" class="form-label">Tên danh mục phòng</label>
+				<input id="name" type="text" th:field="*{name}" placeholder="VD: Phòng đặc biệt" class="form-control" />
+				 <p style="color: red;" th:each="error: ${#fields.errors('name')}" 
+          				th:text="#{validation.require}"></p> 	        	
+        	</div>
+        	
+        	<div class="form-group">
+				<label for="price" class="form-label">Giá tiền</label>
+				<input id="price" type="text" th:field="*{price}" placeholder="800K" class="form-control" />
+				 <p style="color: red;" th:each="error: ${#fields.errors('price')}" 
+          				th:text="#{validation.require}"></p> 	      	
+        	</div>
+        	
+        	<div class="form-group">
+				<label for="description" class="form-label">Mô tả</label>
+				<textarea rows="20" cols="10" th:field="*{description}"></textarea>
+				<span class="form-message"></span>        	
+        	</div>
+			
+			<input th:field="*{file}" type="file"/>
+			
+			<button type="submit" class="form-submit">Thêm mới</button>
+		</form>
+	</div>
+</body>
+</html>

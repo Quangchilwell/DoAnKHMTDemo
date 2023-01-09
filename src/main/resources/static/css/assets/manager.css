@@ -1,0 +1,81 @@
+.manager-list{   
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+.manager-item{
+    display: inline-block;
+    height: 50px;
+    line-height: 46px;
+    list-style: none;
+   
+}
+.manager-item-link{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 0 15px;
+}
+.manager-item-link:hover{
+    background-color: grey;
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+.backgroud{
+    position: relative;
+    margin-top: 0px;
+    padding-top: 50%;
+    background: url("https://recmiennam.com/wp-content/uploads/2020/09/hinh-nen-3D-cho-dien-thoai-lung-linh-16.jpg") top center / cover no-repeat;
+}
+.backgroud-title{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.backgroud-title-wel{
+    color: white;
+    font-size: 50px;
+}
+
+.manager-item-order{
+    position: relative;
+}
+
+.manager-item-order-quantity{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    background-color: red;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    right: 30px;
+}
+
+.manager-item-order-quantity p{
+    margin: 0;
+}
+
+.admin-logout{
+    margin-left: 20px;
+    display: block;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.admin-logout:hover{
+    text-decoration: none;
+    color: blanchedalmond;
+}

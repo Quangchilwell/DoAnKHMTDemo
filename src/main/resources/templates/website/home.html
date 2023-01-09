@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Minh Quang Restaurant</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300;400;500;700;900&display=swap">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	th:href="@{/css/assets/fontawesome-free-6.0.0-web/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/assets/base.css}">
+<link rel="stylesheet" th:href="@{/css/assets/main.css}">
+
+<!-- Datetime picker -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+.body-room-introduce {
+	z-index: 1;
+	background-image: linear-gradient(0, rgba(0, 0, 0, 0.7),
+		rgba(0, 0, 0, 0.7)),
+		url(https://donggia.vn/wp-content/uploads/2020/11/mau-phong-an-co-dien-dep-2021.jpg);
+}
+</style>
+</head>
+<body>
+	<!-- Header -->
+	<div>
+		<header th:replace="common/header :: header"></header>
+		<div class="header-category">
+			<ul class="header-category-list">
+				<li class="header-category-item">
+					<div class="header-category-item-wrap">
+						<a href="" class="header-category-item-link">Chỗ ở</a>
+						<p class="header-category-extra">Phòng</p>
+					</div>
+				</li>
+				<li class="header-category-item">
+					<div class="header-category-item-wrap">
+						<a href="" class="header-category-item-link">Nhà hàng</a>
+						<p class="header-category-extra">Tiệc sáng tối</p>
+					</div>
+				</li>
+				<li class="header-category-item">
+					<div class="header-category-item-wrap">
+						<a href="" class="header-category-item-link">Health Club</a>
+						<p class="header-category-extra">Câu lạc bộ</p>
+					</div>
+				</li>
+				<li class="header-category-item">
+					<div class="header-category-item-wrap">
+						<a href="" class="header-category-item-link">Hồ bơi</a>
+						<p class="header-category-extra">Trong & ngoài</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Slide -->
+	<div id="slider"></div>
+
+	<!-- Body -->
+	<div class="body">
+		<form th:action="@{/MQ/customer-order}" th:object="${orderRoomDTO}"
+			class="form-resavation-in-home" method="post">
+			<div class="form-group">
+				<label for="name" class="form-label">Họ tên quý khách</label> <input
+					id="name" th:field="*{personName}" type="text"
+					placeholder="Nhập tên quý khách" class="form-resavation-input form-control"> 				
+			</div>
+
+			<div class="form-group">
+				<label for="phone" class="form-label">Số điện thoại</label> <input
+					id="phone" th:field="*{phone}" type="text"
+					placeholder="Nhập đúng số bạn nhé!" class="form-resavation-input form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="startDate" class="form-label">Ngày đến</label> <input
+					class="form-resavation-input" th:field="*{startDate}"
+					type="datetime-local" placeholder="Nhập ngày đến" />
+			</div>
+
+			<div class="form-group">
+				<label for="endDate" class="form-label">Ngày rời đi</label> <input
+					class="form-resavation-input" th:field="*{endDate}"
+					type="datetime-local" placeholder="Nhập ngày rời đi" />
+			</div>
+
+
+			<div class="form-group">
+				<label for="people-number" class="form-label">Số người</label> <input
+					id="people-number" th:field="*{numberPeople}" type="number"
+					placeholder="Số người" class="form-resavation-input">
+			</div>
+
+			<button class="button-reservation form-submit" type="submit">Đặt phòng</button>
+		</form>
+
+		<!-- Welcome -->
+		<div class="body-welcome">
+			<div class="body-welcome-header">
+				<h3 class="body-welcome-hotel-name">Mona Hotel</h3>
+				<h1 class="body-welcome-title">CHÀO MỪNG ĐẾN VỚI CHÚNG TÔI</h1>
+			</div>
+			<div class="body-welcome-body">
+				<p class="body-welcome-content">Một trong những yếu tố hàng đầu
+					để những chuyến công tác của bạn trở nên nhẹ nhàng, thoải mái chính
+					là việc lựa chọn một khách sạn cao cấp để lưu trú trong suốt thời
+					gian đi công tác. Những khách sạn sang trọng với nhiều dịch vụ cao
+					cấp, gần trung tâm và nơi công tác vừa giúp cho bạn được thư thả,
+					tận hưởng thời gian nghỉ ngơi.</p>
+			</div>
+
+			<a th:href="@{/MQ/room-catergories}" class="body-welcome-see-detail-link">Xem chi tiết</a>
+		</div>
+
+		<!-- Room Introduce -->
+		<div class="body-room-introduce">
+			<div class="body-room-introduce-image">
+				<img
+					src="https://www.hotelgrandsaigon.com/wp-content/uploads/sites/227/2017/12/GRAND_SEDK_01.jpg"
+					alt="" class="some-image"> <img
+					src="https://www.hotelgrandsaigon.com/wp-content/uploads/sites/227/2017/12/GRAND_SEDK_01.jpg"
+					alt="" class="some-image"> <img
+					src="https://www.hotelgrandsaigon.com/wp-content/uploads/sites/227/2017/12/GRAND_SEDK_01.jpg"
+					alt="" class="some-image">
+			</div>
+
+			<div class="body-room-introduce-content">
+				<h3 class="body-room-introduce-content-hotel-name">Mona Hotel</h3>
+				<h2 class="body-room-introduce-content-introduce">NHỮNG CĂN
+					PHÒNG XINH ĐẸP, THOÁNG MÁT</h2>
+
+				<div class="line"></div>
+
+				<div class="body-room-introduce-content-body">Một trong những
+					yếu tố hàng đầu để những chuyến công tác của bạn trở nên nhẹ nhàng,
+					thoải mái chính là việc lựa chọn một khách sạn cao cấp để lưu trú
+					trong suốt thời gian đi công tác. Những khách sạn sang trọng với
+					nhiều dịch vụ cao cấp, gần trung tâm và nơi công tác vừa giúp cho
+					bạn được thư thả, tận hưởng thời gian nghỉ ngơi.</div>
+
+				<a th:href="@{/MQ/room-catergories}" class="body-welcome-see-detail-link">Xem chi tiết</a>
+				<div class="line"></div>
+			</div>
+		</div>
+
+		<!-- Room Service -->
+		<div class="body-room-service">
+			<div class="body-room-service-header">
+				<h3 class="body-room-service-hotel-name">Mona Hotel</h3>
+				<h1 class="body-room-service-intro">NHỮNG DỊCH VỤ HẤP DẪN</h1>
+				<div class="line"></div>
+			</div>
+
+			<ul class="body-room-service-list">
+				<li class="body-room-service-item"><a href=""
+					class="body-room-service-item-link"> <img
+						src="http://mauweb.monamedia.net/leisure/wp-content/uploads/2019/03/photodune-3531542-tropical-villa-s.jpg"
+						alt="" class="body-room-service-item-img">
+						<h4 class="body-room-service-item-name">Bữa sáng ngay tại
+							phòng</h4>
+						<p class="body-room-service-item-description">Một trong những
+							yếu tố hàng đầu để bạn trở nên nhẹ nhàng, thoải mái</p>
+				</a></li>
+
+				<li class="body-room-service-item"><a href=""
+					class="body-room-service-item-link"> <img
+						src="http://mauweb.monamedia.net/leisure/wp-content/uploads/2019/03/photodune-3531542-tropical-villa-s.jpg"
+						alt="" class="body-room-service-item-img">
+						<h4 class="body-room-service-item-name">Bữa sáng ngay tại
+							phòng</h4>
+						<p class="body-room-service-item-description">Một trong những
+							yếu tố hàng đầu để bạn trở nên nhẹ nhàng, thoải mái</p>
+				</a></li>
+
+				<li class="body-room-service-item"><a href=""
+					class="body-room-service-item-link"> <img
+						src="http://mauweb.monamedia.net/leisure/wp-content/uploads/2019/03/photodune-3531542-tropical-villa-s.jpg"
+						alt="" class="body-room-service-item-img">
+						<h4 class="body-room-service-item-name">Bữa sáng ngay tại
+							phòng</h4>
+						<p class="body-room-service-item-description">Một trong những
+							yếu tố hàng đầu để bạn trở nên nhẹ nhàng, thoải mái</p>
+				</a></li>
+
+				<li class="body-room-service-item"><a href=""
+					class="body-room-service-item-link"> <img
+						src="http://mauweb.monamedia.net/leisure/wp-content/uploads/2019/03/photodune-3531542-tropical-villa-s.jpg"
+						alt="" class="body-room-service-item-img">
+						<h4 class="body-room-service-item-name">Bữa sáng ngay tại
+							phòng</h4>
+						<p class="body-room-service-item-description">Một trong những
+							yếu tố hàng đầu để bạn trở nên nhẹ nhàng, thoải mái</p>
+				</a></li>
+
+				<div class="button-previous">
+					<i class="fa-solid fa-angle-left button-previous-icon"></i>
+				</div>
+
+				<div class="button-next">
+					<i class="fa-solid fa-angle-right button-next-icon"></i>
+				</div>
+			</ul>
+		</div>
+	</div>
+
+	<footer th:replace="common/footer :: footer"></footer>
+
+	<script type="text/javascript" th:src=@{/js/formValidation.js}></script>
+	<!-- Datetime picker -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script>
+		var config = {
+			enableTime : true,
+			dateFormat : "Y-m-d H:i",
+		}
+
+		flatpickr("input[type='datetime-local']", config);
+	</script>
+</body>
+</html>

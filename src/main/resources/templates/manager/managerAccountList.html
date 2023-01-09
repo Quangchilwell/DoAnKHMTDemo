@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach trang thai</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<div class="container">		
+		<div class="header-list-wrapper">
+			<h1>Danh sách tài khoản quản lí</h1>
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">ID</th>
+				<th class="th-title bg-primary">Tài khoản</th>
+				<th class="th-title bg-primary">Mật khẩu</th>
+				<th class="th-title bg-primary">Vai trò</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="manager: ${managerDTOs}">
+				<td th:text="${manager.id}"></td>
+				<td th:text="${manager.username}"></td>
+				<td th:text="${manager.password}"></td>
+				<td th:text="${manager.role}"></td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/update-manager/__${manager.id}__}">Sửa</a> |
+					<a 
+						class="option-from-user btn-soft-delete" 
+						th:dataid="${manager.id}"
+						data-toggle="modal"
+						data-target="#myModal"
+						href="">Xóa</a> |
+					<a class="option-from-user" th:href="@{/admin/change-password/__${manager.id}__}">Đổi mật khẩu</a> 
+				</td>
+			</tr>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/add-manager}">Thêm mới tài khoản</a>
+		</button>
+	</div>
+	<form action="/admin/delete-manager/" name="force-delete-form" method="post"></form>
+	
+
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+	
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach phong</title>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header th:replace="common/headerAdmin :: headerAdmin"></header>
+	<div class="container">
+		<h1>Danh sách phòng</h1>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Tên phòng</th>
+				<th class="th-title bg-primary">Loại phòng</th>
+				<th class="th-title bg-primary">Giá phòng</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="room: ${roomDTOs}">
+				<td th:text="${room.name}"></td>
+				<td th:if="${room.roomTypeDTO != null}" th:text="${room.roomTypeDTO.name}"></td>
+				<td th:if="${room.roomTypeDTO == null}">Chưa có danh mục</td>
+				<td th:if="${room.roomTypeDTO != null}">
+					<span th:text="${#numbers.formatDecimal(room.roomTypeDTO.price, 0, 'COMMA', 0, 'POINT')}">
+					1,145,000
+					</span> VNĐ
+				</td>
+				<td th:if="${room.roomTypeDTO == null}"> Chưa xác định giá </td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/updateRoom/__${room.id}__}">Sửa</a> |
+					<a 
+						class="option-from-user btn-force-delete" 
+						href=""
+						th:dataid="${room.id}"
+						data-toggle="modal"
+						data-target="#myModal"
+					>Xóa</a> |
+					<a class="option-from-user" th:href="@{/admin/info-room/__${room.id}__}">Chi tiết</a>
+				</td>
+			</tr>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/addRoom}">Thêm mới phòng</a>
+		</button>
+	
+		<form action="/admin/delete-room/" name="force-delete-form" method="post"></form>
+		<div th:replace="common/deleteModal :: deleteModal"></div>
+		<script type="text/javascript" th:src="@{/js/app.js}"></script>
+	</div>
+	
+</body>
+</html>

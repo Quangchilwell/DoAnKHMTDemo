@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Khong the xoa phong</title>
+</head>
+<body>
+	<h1>Không thể xóa phòng</h1>
+	<h2>Hiện không thể xóa phòng
+		<h2 th:text="${roomDTO.name}"></h2>
+	</h2>
+	<p>Hiện không thể xóa phòng này. Phòng hiện đang có
+		<span th:text="${size}"></span> lần xuất hiện tại các phòng bận
+	</p>
+	
+	<button>
+		<a th:href="@{/admin/room-list}">Danh sách phòng</a>
+	</button>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach phòng bận</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<form th:action="@{/admin/action-all-status}" method="post" class="container">		
+		<div class="header-list-wrapper">
+			<h1>Danh sách phòng bận</h1>
+		
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th style="width: 60px;" class="th-title bg-primary">Chọn</th>
+				<th class="th-title bg-primary">ID</th>
+				<th class="th-title bg-primary">Tên phòng</th>
+				<th class="th-title bg-primary">Trạng thái</th>
+				<th class="th-title bg-primary">Ngày bắt đầu</th>
+				<th class="th-title bg-primary">Ngày kết thúc</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="room: ${roomBusyDTOs}">
+				<td>
+					<input class="select-item" name="idRecords[]" type="checkbox" th:value="${room.id}"/>
+				</td>
+				<td th:text="${room.id}"></td>
+				<td th:text="${room.roomDTO.name}"></td>
+				<td th:text="${room.statusDTO.name}"></td>
+				<td th:text="${room.startDate}"></td>
+				<td th:text="${room.endDate}"></td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/update-roomBusy/__${room.id}__}">Sửa</a> |
+					<a 
+						class="option-from-user btn-force-delete" 
+						th:dataid="${room.id}"
+						data-toggle="modal"
+						data-target="#myModal"
+						href="">Xóa</a> |
+					<a class="option-from-user" th:href="@{/admin/info-roomBusy/__${room.id}__}">Chi tiết</a> 
+				</td>
+			</tr>
+			
+			<td th:if="${size == 0}" colspan="5" class="text-center">
+	           Không có phòng bận nào
+	          <a th:href="@{/admin/add-roomBusy}">Thêm mới phòng bận</a>
+	        </td>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/add-roomBusy}">Thêm mới phòng bận</a>
+		</button>
+	</form>
+	<form action="/admin/delete-roomBusy/" name="force-delete-form" method="post"></form>
+	
+
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+	
+</body>
+</html>

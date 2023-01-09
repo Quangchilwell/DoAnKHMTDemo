@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Danh muc phong</title>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300;400;500;700;900&display=swap">
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		th:href="@{/css/assets/fontawesome-free-6.0.0-web/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/css/assets/base.css}">
+	<link rel="stylesheet" th:href="@{/css/assets/roomList.css}">
+	<style>
+        .header-category-room {
+            padding: 20%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: linear-gradient(0, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url(https://www.ahalong.com/uploads//hotel/SolHalong/sol-ha-long-hotel-628d9d1369bcb.jpeg);
+        }
+    </style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div>
+			<header th:replace="common/header :: header">
+			</header>
+			<div class="header-category-room">
+                <h1>ĐẶT PHÒNG</h1>
+            </div>
+		</div>
+		
+	  <ul class="body">
+            <div class="room-list">
+                <li class="room-item" th:each="type: ${roomTypeDTOs}">
+                    <h2 class="room-item-type-room" th:text="${type.name}"></h2>
+                    <p class="room-item-price"> <span th:text="${type.price}"></span>K / 1 đêm</p>
+                    <div class="line"></div>
+
+                    <img th:src="@{/img/imgRoomType/__${type.image}__}" alt=""
+                        class="room-item-img">
+                    <div class="room-item-description" th:text="${type.description}">
+                       
+                    </div>
+
+                    <a th:href="@{/MQ/room-catergories/room-detail/__${type.id}__}" class="body-see-detail-link">Xem chi tiết</a>
+                </li>
+            </div>
+        </ul>
+	
+		<footer th:replace="common/footer :: footer"></footer>
+	</div>
+</body>
+</html>

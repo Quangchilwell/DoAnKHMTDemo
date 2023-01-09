@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<title>Danh sach don dat phong</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<div class="container">
+		<div class="header-list-wrapper">
+			<h1>Danh sách đơn đặt phòng chấp nhận</h1>
+		</div>
+
+		<!-- Tim kiem -->
+		<div class="container">
+		  <form class="form-inline" th:action="@{/admin/search-order}">
+		    <div class="form-group">
+		      <label for="email">Tìm kiếm hóa đơn</label>
+		      <input class="form-control" placeholder="Nhập tên hoặc số điện thoại" name="info-search">
+		    </div>
+		    <button type="submit" class="btn btn-default">Tìm kiếm</button>
+		  </form>
+		</div>
+		
+
+		<table style="margin-top: 24px;" class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Mã đơn</th>
+				<th class="th-title bg-primary">Người đặt</th>
+				<th class="th-title bg-primary">Số điện thoại</th>
+				<th class="th-title bg-primary">Đặt cọc</th>
+				<th class="th-title bg-primary">Ngày đặt</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+
+			<tr th:each="orderRoom: ${orderRoomDTOs}">
+				<td th:text="${orderRoom.id}"></td>
+				<td th:text="${orderRoom.personName}"></td>
+				<td th:text="${orderRoom.phone}"></td>
+				<td><span th:text="${orderRoom.deposit}"></span>00 VNĐ</td>
+				<td th:text="${orderRoom.orderDate}"></td>
+				<td><a class="option-from-user btn-accept"
+					th:dataid="${orderRoom.id}" href="">Chấp nhận</a> | <a
+					class="option-from-user"
+					th:href="@{/admin/update-orderRoom/__${orderRoom.id}__}">Sửa</a> |
+					<a class="option-from-user btn-force-delete"
+					th:dataid="${orderRoom.id}" data-toggle="modal"
+					data-target="#myModal" href="">Xóa</a> | <a
+					class="option-from-user"
+					th:href="@{/admin/info-orderRoom/__${orderRoom.id}__}">Chi tiết</a>
+					|</td>
+			</tr>
+
+			<td th:if="${size == 0}" colspan="5" class="text-center">Không
+				có đơn đặt phòng hợp lệ 
+			</td>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/orderRoom-list}">Danh sách đơn đặt phòng</a>
+		</button>
+	</div>
+
+	<form action="/admin/accept-orderRoom/" name="accept-form"
+		method="post"></form>
+	<form action="/admin/delete-orderRoom/" name="force-delete-form"
+		method="post"></form>
+	
+	<script type="text/javascript" th:src="@{/js/app.js}"></script>
+
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+</body>
+</html>

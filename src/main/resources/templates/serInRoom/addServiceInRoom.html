@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Thêm dịch vụ phòng</title>
+	<link rel="stylesheet" th:href="@{/css/form.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container main">
+		<form th:action="@{/admin/addServiceInRoom}" method="post" 
+		th:object="${serviceInRoomDTO}" class="form" id="form-add-serviceInRoom">
+			<h3 class="heading">Thêm mới dịch vụ phòng</h3>
+        	<div class="spacer"></div>
+        	
+        	<p style="color: red;" th:if="${error} != null">Dịch vụ này đã có rồi !</p>
+        	
+        	<div class="form-group">
+				<label for="name" class="form-label">Tên dịch vụ phòng</label>
+				<input id="name" type="text" th:field="*{name}" placeholder="VD: Coca" class="form-control" />
+				<p style="color: red;" th:each="error: ${#fields.errors('name')}" 
+          				th:text="#{validation.require}"></p> 				       	
+        	</div>
+        	
+        	<div class="form-group">
+				<label for="price" class="form-label">Giá tiền</label>
+				<input id="price" type="text" th:field="*{price}" class="form-control" />
+				<p style="color: red;" th:each="error: ${#fields.errors('price')}" 
+          				th:text="#{validation.require}"></p> 	
+        	
+        	</div>
+        	
+        	<div class="form-group">
+				<label for="unit" class="form-label">Đơn vị tính</label>
+				<input id="unit" type="text" th:field="*{unit}" placeholder="VD: Lon" class="form-control" />
+				<p style="color: red;" th:each="error: ${#fields.errors('unit')}" 
+          				th:text="#{validation.require}"></p> 	
+      	
+        	</div>
+        	
+        	<div class="form-group">
+				<label for="description" class="form-label">Mô tả</label>
+				<textarea rows="20" cols="10" th:field="*{description}"></textarea>
+				<span class="form-message"></span>        	
+        	</div>
+			
+			<button type="submit" class="form-submit">Thêm mới</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<div th:fragment="footer" class="footer">
+	<div class="footer-contact">
+		<h3 class="footer-contact-header" th:text="${session.intro.hotelName}"></h3>
+		<div class="footer-contact-body">
+			<ul class="footer-contact-body-list">
+				<li class="footer-contact-body-item"><i
+					class="fa-solid fa-location-arrow footer-contact-body-item-icon"></i>
+					<p class="footer-contact-body-item-title" th:text="${session.intro.address}"></p></li>
+
+				<li class="footer-contact-body-item"><i
+					class="fa-solid fa-phone footer-contact-body-item-icon"></i>
+					<p class="footer-contact-body-item-title" th:text="${session.intro.phone}"></p></li>
+
+				<li class="footer-contact-body-item"><i
+					class="fa-solid fa-at footer-contact-body-item-icon"></i>
+					<p class="footer-contact-body-item-title" th:text="${session.intro.email}"></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer-register">
+		<h3 class="footer-register-header">Đăng kí</h3>
+		<div class="footer-register-body">
+			<p class="footer-register-body-title">Đăng kí với chúng tôi tại đây</p>
+			<form action="" class="footer-register-body-form">
+				<input type="email" class="footer-register-body-input"
+					placeholder="Email">
+				<button class="footer-form-button" type="submit">
+					<i class="fa-solid fa-location-arrow footer-form-icon"></i>
+				</button>
+			</form>
+			<div class="footer-social">
+				<i class="fa-brands fa-facebook"></i> <i
+					class="fa-brands fa-instagram"></i> <i class="fa-brands fa-twitter"></i>
+			</div>
+		</div>
+	</div>
+</div>

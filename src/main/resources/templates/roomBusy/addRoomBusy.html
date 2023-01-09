@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/head :: head(~{::title},~{::link})">
+	<meta charset="UTF-8">
+	<title>Them moi phong ban</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div class="container">
+		<h2>Thêm mới phòng bận</h2>
+		<form method="post" th:action="@{/admin/add-roomBusy}"
+			th:object="${roomBusyDTO}">
+			<div class="form-group">
+				<label for="idRoom">Tên phòng:</label> <select class="form-control"
+					th:field="*{idRoom}">
+					<option th:each="room: ${roomDTOs}" th:text="${room.name}"
+						th:value="${room.id}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="idStatus">Trạng thái:</label> <select
+					class="form-control" th:field="*{idStatus}">
+					<option th:each="status: ${statusDTOs}" th:if="${status.id != 1}"
+						th:text="${status.name}" th:value="${status.id}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="startDate" class="form-label">Ngày bắt đầu</label> <input
+					class="form-control" th:field="*{startDate}" type="datetime-local"
+					placeholder="Nhập ngày đến" />
+			</div>
+
+			<div class="form-group">
+				<label for="endDate" class="form-label">Ngày rời đi</label> <input
+					class="form-control" th:field="*{endDate}" type="datetime-local"
+					placeholder="Nhập ngày rời đi" />
+			</div>
+
+			<div class="form-group">
+				<label for="description">Mô tả (Ghi chú)</label>
+				<textarea class="form-control" th:field="*{description}"></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Thêm mới</button>
+		</form>
+	</div>
+</body>
+</html>

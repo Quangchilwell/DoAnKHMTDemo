@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Chi tiết phòng</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<tr>
+					<th>Mã phòng</th>
+					<td th:text="${roomDTO.id}"></td>
+				</tr>
+				
+				<tr>
+					<th>Tên phòng</th>
+					<td th:text="${roomDTO.name}"></td>
+				</tr>
+				
+				<tr>
+					<th>Tầng</th>
+					<td th:text="${roomDTO.floor}"></td>
+				</tr>
+				
+				<tr>
+					<th>Danh mục</th>
+					<td th:if="${roomDTO.roomTypeDTO != null}" th:text="${roomDTO.roomTypeDTO.name}"></td>
+					<td th:if="${roomDTO.roomTypeDTO == null}">Chưa có danh mục phòng</td>
+				</tr>
+				
+				<tr>
+					<th>Khu nhà</th>
+					<td th:if="${roomDTO.housingDTO != null}" th:text="${roomDTO.housingDTO.name}"></td>
+					<td th:if="${roomDTO.housingDTO == null}">Chưa thuộc khu nhà nào</td>
+				</tr>
+				
+				<tr>
+					<th>Giá phòng</th>
+					<td th:if="${roomDTO.roomTypeDTO != null}">
+						<span th:text="${roomDTO.roomTypeDTO.price}"></span>00 VNĐ
+					</td>
+					<td th:if="${roomDTO.roomTypeDTO == null}">Chưa xác định giá</td>
+				</tr>
+				
+				<tr>
+					<th>Ghi chú</th>
+					<td th:text="${roomDTO.description}"></td>
+				</tr>
+				
+			</table>
+			
+			<button>
+				<a th:href="@{/admin/room-list}">Danh sách phòng</a>
+			</button>
+		</div>
+	</div>
+</body>
+</html>

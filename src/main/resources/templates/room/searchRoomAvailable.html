@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/head :: head(~{::title},~{::link})">
+<meta charset="UTF-8">
+<title>Tim kiem phong trong</title>
+<link rel="stylesheet" href="">
+</head>
+<body>
+	<div class="container">
+		<h2>Tìm kiếm phòng trống</h2>
+		<form method="get" th:action="@{/admin/get-rooms-available}"> 
+			<input name="idInvoice" th:value="${idInvoice}" type="hidden"/>
+		   <div class="form-group">
+		    <label for="startDate">Ngày bắt đầu</label>
+		    <input class="form-control" type="datetime-local" name="startDate" th:value="${startDate}">
+		  </div>
+		  
+		   <div class="form-group">
+		    <label for="endDate">Ngày kết thúc</label>
+		    <input class="form-control" type="datetime-local" name="endDate" th:value="${endDate}">
+		  </div>
+		  
+		  
+		  
+		  <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+		</form>
+		
+		<!-- Danh sach phong tim kiem duoc -->
+			<table class="table table-bordered mt-4">
+			<tr>
+				<th class="th-title bg-primary">Mã phòng</th>
+				<th class="th-title bg-primary">Tên phòng</th>
+				<th class="th-title bg-primary">Loại phòng</th>
+				<th class="th-title bg-primary">Giá phòng</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="room: ${roomDTOs}">
+				<td th:text="${room.id}"></td>
+				<td th:text="${room.name}"></td>
+				<td th:text="${room.roomTypeDTO.name}"></td>
+				<td> 
+					<span th:text="${#numbers.formatDecimal(room.roomTypeDTO.price, 0, 'COMMA', 0, 'POINT')}">
+					1,145,000
+					</span> VNĐ
+				</td>
+				<td>
+					<a class="option-from-user" 
+						th:href="@{/admin/select-room-for-invoice(idInvoice=${idInvoice}, idRoom=${room.id} )}">
+					Chọn vào hóa đơn</a> |
+					<a class="option-from-user" th:href="@{/admin/infoRoom/__${room.id}__}">Chi tiết</a>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<a th:href="@{/admin/info-invoice/__${idInvoice}__}" class="btn btn-primary">Quay lại</a>
+	</div>
+</body>
+</html>

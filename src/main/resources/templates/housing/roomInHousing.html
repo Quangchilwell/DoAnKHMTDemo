@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach phong</title>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header th:replace="common/headerAdmin :: headerAdmin"></header>
+	<div class="container">
+		<h1>Danh sách phòng trong <span th:text="${housingDTO.name}"></span> </h1>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Tên phòng</th>
+				<th class="th-title bg-primary">Loại phòng</th>
+				<th class="th-title bg-primary">Giá phòng</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="room: ${roomDTOs}">
+				<td th:text="${room.name}"></td>
+				<td th:if="${room.roomTypeDTO != null}" th:text="${room.roomTypeDTO.name}"></td>
+				<td th:if="${room.roomTypeDTO == null}">Chưa có danh mục</td>
+				<td th:if="${room.roomTypeDTO != null}"> <span th:text="${room.roomTypeDTO.price}"></span>00 VNĐ </td>
+				<td th:if="${room.roomTypeDTO == null}"> Chưa xác định giá </td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/updateRoom/__${room.id}__}">Sửa</a> |
+					<a class="option-from-user" th:href="@{/admin/infoRoom/__${room.id}__}">Chi tiết</a>
+				</td>
+			</tr>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/housing-list}">Danh sách khu nhà</a>
+		</button>
+		
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

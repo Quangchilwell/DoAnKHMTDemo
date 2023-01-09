@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Xac nhan xoa loai phong</title>
+</head>
+<body>
+	<h1>Bạn có chắc muốn xóa danh mục phòng 
+		<span th:text=${type.name}></span>?
+		Việc xóa danh mục sẽ ảnh hưởng đến các phòng trong danh mục nầy!
+	</h1>
+	
+	<button>
+		<a th:href="@{/admin/deleteRoomTypeSuccess(id=${type.id})}">Chắc chắn</a>
+	</button>
+	<button>
+		<a th:href="@{/admin/roomTypeList}">Không</a>
+	</button>
+</body>
+</html>

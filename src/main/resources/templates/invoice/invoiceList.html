@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach hoa don</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<div th:action="@{/admin/action-all-status}" method="post" class="container">		
+		<div class="header-list-wrapper">
+			<h1>Danh sách hóa đơn</h1>
+			<a th:href="@{/admin/invoice-completion-list}">Hóa đơn đã hoàn thành: 
+				<span th:text="${records}"></span> 
+			</a>
+		</div>
+		
+		<!-- Tim kiem -->
+		<div class="container">
+		  <form class="form-inline" th:action="@{/admin/invoice-searching}">
+		    <div class="form-group">
+		      <label for="info-search-invoice">Tìm kiếm hóa đơn</label>
+		      <input class="form-control" placeholder="Nhập tên hoặc số điện thoại" name="info-search-invoice">
+		    </div>
+		    <button type="submit" class="btn btn-default">Tìm kiếm</button>
+		  </form>
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Mã HĐ</th>
+				<th class="th-title bg-primary">Tên KH</th>
+				<th class="th-title bg-primary">Số điện thoại</th>
+				<th class="th-title bg-primary">Tổng tiền phải trả</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="invoice: ${invoiceDTOs}">
+				<td th:text="${invoice.id}"></td>
+				<td th:text="${invoice.personName}"></td>
+				<td th:text="${invoice.phone}"></td>
+				<td>
+					<span th:text="${#numbers.formatDecimal(invoice.totalPrice, 0, 'COMMA', 0, 'POINT')}">
+					1,145,000
+					</span> VNĐ
+				</td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/update-invoice/__${invoice.id}__}">Sửa</a> |
+					<a class="option-from-user" th:href="@{/admin/info-invoice/__${invoice.id}__}">Chi tiết</a> 
+				</td>
+			</tr>
+			
+			<td th:if="${size == 0}" colspan="5" class="text-center">
+	           Không có hoá đơn nào
+	        </td>
+		</table>
+		
+		
+	</div>
+	
+	<form action="/admin/soft-delete-invoice/" name="form-soft-delete" method="post"></form>
+	
+	<form action="/admin/delete-invoice/" name="force-delete-form" method="post"></form>
+	
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+	
+</body>
+</html>

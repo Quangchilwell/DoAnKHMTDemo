@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Thêm phòng</title>
+	<link rel="stylesheet" th:href="@{/css/form.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container main">
+		<form th:action="@{/admin/addRoom}" method="post" 
+		th:object="${roomDTO}" class="form" id="form-validation">
+			<h3 class="heading">Thêm mới phòng</h3>
+        	<div class="spacer"></div>
+        	
+        	<p style="color: red;" th:if="${error} != null">Phòng này đã có rồi !</p>
+        	
+        	<div class="form-group">
+				<label for="name" class="form-label">Tên phòng</label>
+				<input id="name" type="text" th:field="*{name}" placeholder="VD: Phòng đặc biệt" class="form-control" />
+				<p style="color: red;" th:each="error: ${#fields.errors('name')}" 
+          				th:text="#{validation.require}"></p> 
+        	</div>
+        	
+        	<div class="form-group">
+	        	<label for="idType" class="form-label">Loại phòng</label>
+	        	<select th:field="*{idType}">
+	        		<option th:each="type: ${session.types}" th:text="${type.name}" 
+	        			th:value="${type.id}" />
+	        	</select>
+        	</div>
+        	
+        	<div class="form-group">
+	        	<label for="idHousing" class="form-label">Khu nhà</label>
+	        	<select th:field="*{idHousing}">
+	        		<option th:each="housing: ${session.housings}" th:text="${housing.name}" 
+	        			th:value="${housing.id}" />
+	        	</select>
+        	</div>
+        	
+        	<div class="form-group">
+				<label for="floor" class="form-label">Tầng</label>
+				<input id="name" type="number" th:field="*{floor}" placeholder="Nhập tầng" class="form-control" />
+				<span class="form-message"></span> 
+				<p style="color: red;" th:each="error: ${#fields.errors('floor')}" 
+          				th:text="#{validation.require}"></p>        	
+        	</div>
+        	
+        	
+        	<div class="form-group">
+				<label for="description" class="form-label">Mô tả</label>
+				<textarea rows="20" cols="10" th:field="*{description}"></textarea>    	
+        	</div>
+			
+			
+			<button type="submit" class="form-submit">Thêm mới</button>
+		</form>
+	</div>
+	
+</body>
+</html>

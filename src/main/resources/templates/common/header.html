@@ -1,0 +1,41 @@
+
+<div th:fragment="header" class="header" id="header">
+	<div class="header-contact">
+		<div class="header-contact-address-wrap">
+			<div class="header-contact-address">
+				<i class="fa-solid fa-house header-contact-address-icon"></i>
+				<p class="header-contact-address-name" th:text=${session.intro.address}></p>
+			</div>
+
+			<div class="header-contact-address">
+				<i class="fa-solid fa-phone header-contact-address-icon"></i>
+				<p class="header-contact-address-phone" th:text="${session.intro.phone}"></p>
+			</div>
+		</div>
+
+		<div class="header-contact-social">
+			<i class="fa-brands fa-facebook"></i> <i
+				class="fa-brands fa-instagram"></i> <i class="fa-brands fa-twitter"></i>
+		</div>
+	</div>
+
+	<div class="header-navbar">
+		<img
+			src="https://cdn.dribbble.com/users/7638711/screenshots/15966084/media/f1a0d6c4af80c9c7d2771e06734530b2.png?compress=1&resize=400x300&vertical=top"
+			alt="" class="header-navbar-logo">
+		<ul class="header-navbar-list">
+			<li class="header-navbar-item"><a th:href="@{/MQ/home}"
+				class="header-navbar-item-link">TRANG CHỦ</a></li>
+			<li class="header-navbar-item"><a
+				class="header-navbar-item-link">GIỚI THIỆU</a></li>
+			<li class="header-navbar-item"><a
+				class="header-navbar-item-link">PHÒNG</a></li>
+			<li class="header-navbar-item"><a
+				class="header-navbar-item-link">TIN TỨC</a></li>
+			<li class="header-navbar-item"><a
+				class="header-navbar-item-link">LIÊN HỆ</a></li>
+		</ul>
+	</div>
+
+	
+</div>

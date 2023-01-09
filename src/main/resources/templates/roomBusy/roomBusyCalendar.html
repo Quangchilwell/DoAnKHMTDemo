@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Lich phong</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<form th:action="@{/admin/action-all-status}" method="post" class="container">		
+		<div class="header-list-wrapper">
+			<h2>Lịch của phòng <span th:text="${roomDTO.name}"></span> </h2>
+		
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Tên phòng</th>
+				<th class="th-title bg-primary">Trạng thái</th>
+				<th class="th-title bg-primary">Ngày bắt đầu</th>
+				<th class="th-title bg-primary">Ngày kết thúc</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="room: ${roomBusyDTOs}">
+				<td th:text="${room.roomDTO.name}"></td>
+				<td th:text="${room.statusDTO.name}"></td>
+				<td th:text="${room.startDate}"></td>
+				<td th:text="${room.endDate}"></td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/info-roomBusy/__${room.id}__}">Chi tiết</a> 
+				</td>
+			</tr>
+			
+			<td th:if="${size == 0}" colspan="5" class="text-center">
+	           Phòng này không bận
+	        </td>
+		</table>
+		
+		
+	</form>
+	
+</body>
+</html>

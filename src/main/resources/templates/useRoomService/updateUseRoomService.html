@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h2>Cập nhật dịch vụ sử dụng</h2>
+		<form method="post" th:action="@{/admin/update-useRoomService}" th:object="${useRoomServiceDTO}">
+			<input type="hidden" th:field="*{id}" />
+			<input name="idInvoice" type="hidden" th:value="${idInvoice}" />
+			<input name="unitPrice" type="hidden" th:value="${useRoomServiceDTO.unitPrice}" />
+			
+			<div class="form-group">
+			  <label for="">Phòng sử dụng:</label>
+			  <select class="form-control" th:field="*{idRoom}">
+			  <option th:text="${useRoomSeviceDTO.roomDTO.name}" 
+			  		th:value="${useRoomSeviceDTO.roomDTO.id}"></option>
+			    <option 
+			    	th:each="room: ${roomBusyDTOs}" 
+			    	th:text="${room.roomDTO.name}" 
+			    	th:value="${room.roomDTO.id}">
+			    </option>
+			  </select>
+			</div>
+			
+			<div class="form-group">
+			  <label for="idRoom">Loại dịch vụ:</label>
+			  <select class="form-control" th:field="*{idService}">
+			  	<option th:text=${service.name} th:value="${service.id}">></option>
+			    <option 
+			    	th:each="ser: ${serviceInRoomDTOs}" 
+			    	th:if="${ser.id != service.id}"
+			    	th:text="${ser.name}" 
+			    	th:value="${ser.id}">
+			    </option>
+			  </select>
+			</div>
+			
+		   <div class="form-group">
+		    <label for="quantity">Số lượng</label>
+		    <input class="form-control" type="text" th:field="*{quantity}">
+		  </div>
+		  
+		   <div class="form-group">
+		    <label for="description">Mô tả (Ghi chú)</label>
+		    <textarea class="form-control" th:field="*{description}"></textarea>
+		  </div>
+		  
+		  <button type="submit" class="btn btn-primary">Cập nhật</button>
+		</form>
+	</div>
+</body>
+</html>

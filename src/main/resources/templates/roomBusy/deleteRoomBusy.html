@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Xac nhan xoa</title>
+</head>
+<body>
+	<h1>Xác nhận xóa phòng bận</h1>
+	
+	<h3>Bạn có chắc muốn xóa phòng bận này?</h3>
+	
+	<button>
+		<a th:href="@{/admin/delete-roomBusy-in-invoice-success(id=${roomBusy.id})}">Có</a>
+	</button>
+	
+	<button>
+		<a th:href="@{/admin/info-invoice/__${idInvoice}__}">Không</a>
+	</button>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/head :: head(~{::title},~{::link})">
+<meta charset="UTF-8">
+<title>Cap nhat hoa don</title>
+<link rel="stylesheet" href="" />
+</head>
+<body>
+	<div class="container">
+		<h2>Cập nhật hóa đơn phòng</h2>
+		<form method="post" th:action="@{/admin/update-invoice}"
+			th:object="${invoiceDTO}">
+			<input type="hidden" th:field=*{id} />
+
+			<div class="form-group">
+				<label for="name">Người đặt phòng</label> <input
+					class="form-control" th:field="*{personName}"
+					placeholder="Nhập tên người đặt">
+				 <p style="color: red;" th:each="error: ${#fields.errors('personName')}" 
+          				th:text="#{validation.require}"></p> 
+			</div>
+
+			<div class="form-group">
+				<label for="phone">Số điện thoại</label> <input class="form-control"
+					th:field="*{phone}" placeholder="Nhập đúng Số điện thoại">
+				 <p style="color: red;" th:each="error: ${#fields.errors('phone')}" 
+          				th:text="#{validation.require}"></p> 
+			</div>
+
+			<div class="form-group">
+				<label for="numberPeople">Số lượng người</label> <input
+					class="form-control" th:field="*{numberPeople}"
+					placeholder="Số lượng người">
+				 <p style="color: red;" th:each="error: ${#fields.errors('numberPeople')}" 
+          				th:text="#{validation.require}"></p> 
+			</div>
+
+			<div class="form-group">
+				<label for="deposit">Tiền đặt cọc</label> <input
+					class="form-control" th:field="*{deposit}"
+					placeholder="Nhập VD 500 (là 500K)">
+			</div>
+
+			<div class="form-group">
+				<label for="startDate" class="form-label">Ngày đến</label> <input
+					class="form-control" th:field="*{startDate}" type="datetime-local"
+					placeholder="Nhập ngày đến" />
+				 <p style="color: red;" th:each="error: ${#fields.errors('startDate')}" 
+          				th:text="#{validation.require}"></p> 
+			</div>
+
+			<div class="form-group">
+				<label for="endDate" class="form-label">Ngày rời đi</label> <input
+					class="form-control" th:field="*{endDate}" type="datetime-local"
+					placeholder="Nhập ngày rời đi" />
+				 <p style="color: red;" th:each="error: ${#fields.errors('endDate')}" 
+          				th:text="#{validation.require}"></p> 
+			</div>
+
+			<div class="form-group">
+				<label for="endDate">Số lượng phòng</label> <input
+					class="form-control" th:field="*{quantityRooms}"
+					disabled="disabled">
+			</div>
+
+			<div class="form-group">
+				<label for="endDate">Tổng tiền phòng</label> <input
+					class="form-control" th:field="*{totalPrice}" disabled="disabled">
+			</div>
+
+			<div class="form-group">
+				<label for="description">Mô tả (Ghi chú)</label>
+				<textarea class="form-control" th:field="*{description}"></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Cập nhật</button>
+		</form>
+	</div>
+</body>
+</html>

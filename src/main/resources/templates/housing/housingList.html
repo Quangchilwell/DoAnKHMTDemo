@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach khu nha</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header th:replace="common/headerAdmin :: headerAdmin"></header>
+	<div class="container">
+		<h1>Danh sách khu nhà</h1>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Mã khu nhà</th>
+				<th class="th-title bg-primary">Tên danh mục</th>
+				<th class="th-title bg-primary">Số tầng</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="housing: ${housingDTOs}">
+				<td th:text="${housing.id}"></td>
+				<td th:text="${housing.name}"></td>
+				<td th:text="${housing.floorsQuantity}"></td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/updateHousing/__${housing.id}__}">Sửa</a> |
+					<a 
+						class="option-from-user btn-force-delete" 
+						th:dataid="${housing.id}"
+						data-toggle="modal"
+						data-target="#myModal"
+						href=""
+					>
+					Xóa</a> |
+					<a class="option-from-user" th:href="@{/admin/info-housing/__${housing.id}__}">Chi tiết</a> |
+					 <a class="option-from-user" th:href="@{/admin/rooms-in-housing/__${housing.id}__}">Các phòng</a>
+				</td>
+			</tr>
+		</table>
+		
+		<button>
+			<a th:href="@{/admin/addHousing}">Thêm mới khu nhà</a>
+		</button>
+	
+		<form action="/admin/delete-housing/" name="force-delete-form" method="post"></form>
+
+		<div th:replace="common/deleteModal :: deleteModal"></div>
+		<script th:src="@{/js/app.js}" type="text/javascript"></script>
+	</div>
+</body>
+</html>

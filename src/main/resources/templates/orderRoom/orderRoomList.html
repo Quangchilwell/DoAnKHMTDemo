@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<title>Danh sach don dat phong</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<div class="container">
+		<div class="header-list-wrapper">
+			<h1>Danh sách đơn đặt phòng</h1>
+			<a th:href="@{/admin/orderRooms-accepted}">Đơn đã chấp nhận: <span
+				th:text="${numberOrderAccepted}"></span>
+			</a>
+		</div>
+		
+
+		<table style="margin-top: 24px;" class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">Mã đơn</th>
+				<th class="th-title bg-primary">Người đặt</th>
+				<th class="th-title bg-primary">Số điện thoại</th>
+				<th class="th-title bg-primary">Đặt cọc</th>
+				<th class="th-title bg-primary">Ngày đặt</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+
+			<tr th:each="orderRoom: ${orderRoomDTOs}">
+				<td th:text="${orderRoom.id}"></td>
+				<td th:text="${orderRoom.personName}"></td>
+				<td th:text="${orderRoom.phone}"></td>
+				<td>
+					<span th:text="${#numbers.formatDecimal(orderRoom.deposit, 0, 'COMMA', 0, 'POINT')}">
+					1,145,000
+					</span> VNĐ
+				</td>
+				<td th:text="${orderRoom.orderDate}"></td>
+				<td><a class="option-from-user btn-accept"
+					th:dataid="${orderRoom.id}" href="">Chấp nhận</a> | <a
+					class="option-from-user"
+					th:href="@{/admin/update-orderRoom/__${orderRoom.id}__}">Sửa</a> |
+					<a class="option-from-user btn-force-delete"
+					th:dataid="${orderRoom.id}" data-toggle="modal"
+					data-target="#myModal" href="">Xóa</a> | <a
+					class="option-from-user"
+					th:href="@{/admin/info-orderRoom/__${orderRoom.id}__}">Chi tiết</a>
+					|</td>
+			</tr>
+
+			<td th:if="${size == 0}" colspan="5" class="text-center">Không
+				có đơn đặt phòng nào <a th:href="@{/admin/add-orderRoom}">Thêm
+					mới đơn đặt phòng</a>
+			</td>
+		</table>
+
+		<button>
+			<a th:href="@{/admin/add-orderRoom}">Thêm mới đơn đặt phòng</a>
+		</button>
+	</div>
+
+	<form action="/admin/accept-orderRoom/" name="accept-form"
+		method="post"></form>
+	<form action="/admin/delete-orderRoom/" name="force-delete-form"
+		method="post"></form>
+
+
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+
+	</script>
+
+</body>
+</html>

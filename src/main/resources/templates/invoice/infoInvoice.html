@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Chi tiết Hóa đơn</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<tr>
+					<th>Mã hóa đơn</th>
+					<td th:text="${invoice.id}"></td>
+				</tr>
+
+				<tr>
+					<th>Ngày tạo hóa đơn</th>
+					<td th:text="${invoice.invoiceCreationDate}"></td>
+				<tr>
+					<th>Người đặt</th>
+					<td th:text="${invoice.personName}"></td>
+				</tr>
+
+				<tr>
+					<th>Số điện thoại</th>
+					<td th:text="${invoice.phone}"></td>
+				</tr>
+
+				<tr>
+					<th>Số lượng người</th>
+					<td th:text="${invoice.numberPeople}"></td>
+				</tr>
+
+				<tr>
+					<th>Số phòng đặt</th>
+					<td th:text="${invoice.quantityRooms}"></td>
+				</tr>
+
+				<tr>
+					<th>Ngày đến</th>
+					<td th:text="${invoice.startDate}"></td>
+				</tr>
+
+				<tr>
+					<th>Ngày đi</th>
+					<td th:text="${invoice.endDate}"></td>
+				</tr>
+
+				<tr>
+					<th>Ghi chú</th>
+					<td th:text="${invoice.description}"></td>
+				</tr>
+
+				<tr>
+					<th>Đã đặt cọc</th>
+					
+					<td>
+						<span th:text="${#numbers.formatDecimal(invoice.deposit, 0, 'COMMA', 0, 'POINT')}">
+						1,145,000
+						</span> VNĐ 
+					</td>
+				</tr>
+			</table>
+
+			<!-- Danh sach phong trong HD -->
+			<div class="mt-4">
+				<h2>Danh sách phòng trong hóa đơn</h2>
+				<a
+					th:href="@{/admin/search-rooms-available/idInvoice/__${invoice.id}__}">
+					Thêm phòng vào</a>
+
+				<table class="table table-bordered">
+					<tr>
+						<th>Phòng</th>
+						<th>Giá phòng 1 ngày</th>
+						<th>Ngày bắt đầu</th>
+						<th>Ngày kết thúc</th>
+						<th>Số ngày</th>
+						<th>Tổng tiền</th>
+						<th>Lựa chọn</th>
+					</tr>
+
+					<tr th:each="roomBusy: ${roomBusyDTOs}">
+						<td th:text="${roomBusy.roomDTO.name}"></td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(roomBusy.RoomDTO.RoomTypeDTO.price, 0, 'COMMA', 0, 'POINT')}">
+							1,145,000
+							</span> VNĐ
+						</td>
+						<td th:text="${roomBusy.startDate}"></td>
+						<td th:text="${roomBusy.endDate}"></td>
+						<td th:text="${roomBusy.daysBooked}"></td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(roomBusy.unitPrice, 0, 'COMMA', 0, 'POINT')}">
+							1,145,000
+							</span> VNĐ
+						</td>
+						<td><a
+							th:href="@{/admin/update-roomBusy-in-invoice/__${roomBusy.id}__}">Sửa</a>
+							| <a
+							th:href="@{/admin/calendar-roomBusy/__${roomBusy.RoomDTO.id}__}">Xem
+								lịch phòng</a> | <a
+							th:href="@{/admin/delete-roomBusy-in-invoice/__${roomBusy.id}__}"
+							class="option-from-user">Bỏ phòng</a></td>
+					</tr>
+
+				</table>
+			</div>
+
+
+
+			<!-- Danh sach su dung dich vu phong trong don -->
+			<div class="mt-4">
+				<h2>Danh sách sử dụng dịch vụ phòng</h2>
+				<a
+					th:href="@{/admin/add-useRoomService/idInvoice/__${invoice.id}__}">Thêm
+					sử dụng DV</a>
+				<table class="table table-bordered">
+					<tr>
+						<th>Mã HĐ</th>
+						<th>Loại dịch vụ</th>
+						<th>Phòng</th>
+						<th>Đơn vị tính</th>
+						<th>Giá</th>
+						<th>Số lượng</th>
+						<th>Thành tiền</th>
+						<th>Ghi chú</th>
+						<th>Lựa chọn</th>
+					</tr>
+
+					<tr th:each="useRS: ${useRoomSeviceDTOs}">
+						<td th:text="${useRS.invoiceDTO.id}"></td>
+						<td th:text="${useRS.serviceInRoomDTO.name}"></td>
+						<td th:text="${useRS.roomDTO.name}"></td>
+						<td th:text="${useRS.serviceInRoomDTO.unit}"></td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(useRS.serviceInRoomDTO.price, 0, 'COMMA', 0, 'POINT')}">
+							1,145,000
+							</span> VNĐ
+						</td>
+						<td th:text="${useRS.quantity}"></td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(useRS.unitPrice, 0, 'COMMA', 0, 'POINT')}">
+							1,145,000
+							</span> VNĐ
+						</td>	
+							
+						<td th:text="${useRS.description}"></td>
+						<td><a
+							th:href="@{/admin/update-useRoomService(id=${useRS.id}, idInvoice=${invoice.id}) }">Sửa</a>
+							| <a href="" class="option-from-user btn-force-delete"
+							th:dataid="${useRS.id}" data-toggle="modal"
+							data-target="#myModal"> Xóa</a></td>
+					</tr>
+				</table>
+			</div>
+
+			<h4>
+				Tổng số tiền trong hóa đơn: <span th:text="${#numbers.formatDecimal(invoice.totalPrice, 0, 'COMMA', 0, 'POINT')}">
+							1,145,000
+							</span> VNĐ 
+			</h4>
+
+			<h4>
+				Tổng số tiền cần phải trả: <span th:text="${#numbers.formatDecimal(moneyMustPay, 0, 'COMMA', 0, 'POINT')}">
+							1,145,000
+							</span> VNĐ
+			</h4>
+
+			<a th:href="@{/admin/invoice-list}">Danh sách hóa đơn</a> | <a
+				th:href="@{/admin/completion-invoice(id=${invoice.id})}">Hoàn
+				thành hóa đơn</a>
+		</div>
+
+		<form action="/admin/delete-useRoomService/" name="force-delete-form"
+			method="post"></form>
+		<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	</div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+	</script>
+	<script th:src="@{/js/invoice.js}" type="text/javascript"></script>
+	</script>
+
+
+</body>
+</html>

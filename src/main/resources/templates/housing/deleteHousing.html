@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Xoa khu nha</title>
+</head>
+<body>
+	<h1>Bạn có chắc muốn xóa khu nhà
+		<span th:text=${housingDTO.name}></span>?
+		Việc xóa danh mục sẽ ảnh hưởng đến các phòng trong khu nhà này!
+	</h1>
+	
+	<button>
+		<a th:href="@{/admin/deleteHousingSuccess(id=${housingDTO.id})}">Chắc chắn</a>
+	</button>
+	<button>
+		<a th:href="@{/admin/housingList}">Không</a>
+	</button>
+</body>
+</html>

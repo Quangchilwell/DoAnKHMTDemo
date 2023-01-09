@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Chi tiết phòng bận</h2>
+		<div class="table-responsive">
+			<table class="table">
+				<tr>
+					<th>ID</th>
+					<td th:text="${roomBusy.id}"></td>
+				</tr>
+				
+				<tr>
+					<th>Tên phòng</th>
+					<td th:text="${roomBusy.roomDTO.name}"></td>
+				</tr>
+				
+				<tr>
+					<th>Trạng thái</th>
+					<td th:text="${roomBusy.statusDTO.name}"></td>
+				</tr>
+
+				<tr>
+					<th>Ngày bắt đầu</th>
+					<td th:text="${roomBusy.startDate}"></td>
+				</tr>
+
+				<tr>
+					<th>Ngày kết thúc</th>
+					<td th:text="${roomBusy.endDate}"></td>
+				</tr>
+				
+				<tr>
+					<th>Ghi chú</th>
+					<td th:text="${roomBusy.description}"></td>
+				</tr>
+				
+			</table>
+			
+			<a th:href="@{/admin/roomBusy-list}">Danh sách phòng bận</a> |
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+
+/* Header 3 */
+.header-category{
+    height: 80px;
+    background-color: rgba(20, 20, 20, 0.8);
+}
+
+.header-category-list{
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    margin: 0;
+}
+
+.header-category-item-wrap{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header-category-item{
+    display: block;
+    text-align: center;
+    width: 25%;
+    border-right: 1px solid;
+    border-color: var(--text-color-1);
+    height: 100%;
+}
+
+
+.header-category-item-link{
+    display: block;
+    color: var(--text-color-1);
+    font-size: 16px;
+}
+
+.header-category-item-link:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.header-category-extra{
+    display: block;
+    color: gray;
+    font-size: 12px;
+}
+
+.header-background-img{
+    width: 100%;
+}
+
+.header-background-img img{
+    width: 100%;
+}
+
+/* Slide */
+#slider{
+    z-index: 1;
+    position: relative;
+    margin-top: 0px;
+    padding-top: 50%;
+    background: url("http://mauweb.monamedia.net/leisure/wp-content/uploads/2019/03/slide-1.jpg") top center / cover no-repeat;
+}
+
+/* Home */
+    /* Dat phong */
+.form-resavation-in-home{
+    display: flex;
+    background-color: var(--background-color-1);
+    width: 100%;
+    height: 80px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.form-group{
+    margin-top: 15px;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-resavation-input{
+    display: block;
+    margin-top: 6px;
+    width: 100%;
+    height: 30px;
+    color: white;
+    background-color: var(--background-color-1);
+    outline: none;
+}
+
+.form-label{
+    color: white;
+}
+
+.button-reservation{
+    background-color: var(--background-color-1);
+    color: white;
+   list-style: none;
+}
+
+    /* Welcome */
+.body-welcome{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.944);
+    padding: 20px 0;
+}
+
+.body-welcome-header{
+    margin-bottom: 30px;
+    border-bottom: 4px solid #ad854d;
+    width: 50%;
+    margin: 0 auto;
+    color: white;
+}
+
+.body-welcome-hotel-name{
+    font-size: 25px;
+}
+
+.body-welcome-hotel-title{
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+.body-welcome-body{
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 20px;
+}
+
+.body-welcome-content{
+    font-size: 16px;
+    color: var(--text-color-yellow-2);
+}
+
+.body-welcome-see-detail-link{
+    font-size: 18px;
+    color: var( --text-color-yellow);
+    text-decoration: none;
+}
+
+.body-welcome-see-detail-link:hover{
+    color: white;
+    text-decoration: none;
+}
+
+    /* Room Introduce */
+.body-room-introduce{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.body-room-introduce-image{
+   padding-top: 100px;
+   padding-bottom: 50px;
+}
+
+.some-image{
+    display: block;
+    margin-bottom: 50px;
+    width: 250px;
+}
+
+.some-image:first-child{
+    display: block;
+    margin-left: 200px;
+    transform: rotate(-10deg);
+}
+.some-image:nth-child(2){
+    margin-left: 100px;
+    transform: rotate(10deg);
+}
+.some-image:nth-child(3){
+    margin-left: 200px;
+    transform: rotate(-10deg);
+}
+
+.body-room-introduce-content{
+    width: 50%;
+    color: white;
+}
+
+.body-room-introduce-content-hotel-name{
+
+}
+
+.body-room-introduce-content-hotel-introduce{
+    font-weight: 800;
+}
+
+.body-room-introduce-content-body{
+    margin-bottom: 15px;
+}
+
+.body-room-introduce-content-body{
+    width: 80%;
+}
+
+    /* Room Service */
+.body-room-service{
+    background-color: rgba(20, 20, 20, 0.9);  
+    padding: 40px 0;
+}
+
+.body-room-service-header{
+     color: white;
+     width: 50%;
+     margin: 0 auto;
+     text-align: center;
+}
+
+.body-room-service-header .line{
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.body-room-service-hotel-name{
+    font-size: 25px;
+    color: var(--text-color-yellow-2);
+}
+
+.body-room-service-intro{
+    font-weight: 700;
+}
+
+.body-room-service-list{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.body-room-service-item{
+    width: 22%;
+    border: 1px solid var(--text-color-yellow-2);
+    margin-right: 15px;
+}
+
+.body-room-service-item-link{
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.body-room-service-item-link:hover{
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.body-room-service-item-img{
+    width: 100%
+}
+
+.body-room-service-item-name{
+    display: block;
+    margin-top: 20px;
+    color: var(--text-color-yellow);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.body-room-service-item-description{
+    display: block;
+    color: var(--text-color-yellow-2);
+    text-align: center;
+}
+
+.button-previous{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 100%;
+    left: 50px;
+}
+
+.button-previous-icon,
+.button-next-icon
+{
+    color: white;
+    font-size: 30px;
+}
+
+.button-next{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 100%;
+    right: 30px;
+}
+.button-previous:hover{
+    background-color: rgba(204, 204, 204, 0.321);
+}
+.button-next:hover{
+    background-color: rgba(204, 204, 204, 0.321);
+}
+
+/* FOOTER */
+.container-fluid{
+	
+}
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.944);
+    margin-top: -10px;
+    padding: 40px 0;
+}
+
+.footer-contact-header{
+    color: white;
+}
+
+.footer-contact-body{
+    
+}
+
+.footer-contact-body-list{
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-contact-body-item{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.footer-contact-body-item-icon{
+    display: block;
+    margin-right: 10px;
+}
+
+.footer-contact-body-item-title{
+    display: block;
+}
+    /* Register */
+
+.footer-register-header{
+    color: white;
+}
+
+.footer-register-body-title{
+    color: #ccc;
+    font-size: 15px;
+}
+
+.footer-register-body-input{
+    color: black;
+    width: 70%;
+    height: 30px;
+}
+
+.footer-form-button{
+    height: 30px; 
+}
+
+.footer-form-icon{
+    left: 10px;
+    color: var(--text-color-yellow);
+    font-size: 16px;
+}
+
+.footer-social{
+    margin-top: 20px;
+}
+
+.footer-social i{
+    font-size: 18px;
+    color: #333;
+}
+
+.footer-social i:hover{
+    color: var(--text-color-yellow-2);
+}

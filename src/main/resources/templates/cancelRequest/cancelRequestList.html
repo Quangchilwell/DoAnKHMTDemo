@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=UTF-8>
+	<title>Danh sach hủy yêu cầu</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav th:replace="common/headerAdmin :: headerAdmin"></nav>
+	<div th:action="@{/admin/action-all-status}" method="post" class="container">		
+		<div class="header-list-wrapper">
+			<h1>Danh sách hủy yêu cầu</h1>
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th class="th-title bg-primary">ID</th>
+				<th class="th-title bg-primary">Người hủy</th>
+				<th class="th-title bg-primary">Sô điện thoại</th>
+				<th class="th-title bg-primary">Đặt cọc</th>
+				<th class="th-title bg-primary">Ngày hủy</th>
+				<th class="th-title bg-primary">Lựa chọn</th>
+			</tr>
+			
+			<tr th:each="cancel: ${cancelDTOs}">
+				<td th:text="${cancel.id}"></td>
+				<td th:text="${cancel.customerName}"></td>
+				<td th:text="${cancel.phone}"></td>
+				<td>
+					<span th:text="${cancel.deposit}"></span>00 VNĐ
+				</td>
+				<td th:text="${cancel.cancelDate}"></td>
+				<td>
+					<a class="option-from-user" th:href="@{/admin/update-cancel-request/__${cancel.id}__}">Sửa</a> |
+					<a 
+						class="option-from-user btn-soft-delete" 
+						th:dataid="${cancel.id}"
+						data-toggle="modal"
+						data-target="#myModal"
+						href="">Xóa</a> |
+					<a class="option-from-user" th:href="@{/admin/info-cancel-request/__${cancel.id}__}">Chi tiết</a> 
+				</td>
+			</tr>
+			
+			<td th:if="${size == 0}" colspan="5" class="text-center">
+	           Không có yêu cầu hủy
+	        </td>
+		</table>
+		
+	</div>
+	<form action="/admin/soft-delete-status/" name="form-soft-delete" method="post"></form>
+	
+
+	<div th:replace="common/deleteModal :: deleteModal"></div>
+
+	<script th:src="@{/js/app.js}" type="text/javascript"></script>
+	
+</body>
+</html>

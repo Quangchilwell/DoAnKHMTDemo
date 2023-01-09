@@ -1,0 +1,145 @@
+.header-category-room{
+    text-align: center;
+    color: white;
+}
+
+.row{
+    padding-left: 40px;
+}
+
+.room-body{
+    background-color: rgba(20, 20, 20, 0.994);
+}
+
+.room-body-wrap{
+     margin-top: 50px;
+}
+
+.room-details{
+   padding-left: 50px;
+}
+
+.room-details-image{
+    width: 100%;
+}
+
+.room-details-main-img{
+    width: 700px;
+}
+
+.room-details-extra{
+    margin-top: 40px;
+    display: flex;
+}
+
+.room-details-image-extra{
+    display: block;
+    width: 140px;
+    margin-right: 30px;
+    border: 1px solid var(--text-color-yellow-2);
+}
+
+.room-details-service{
+    margin-top: 30px;
+    width: 100%;
+}
+
+.room-details-service-list{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.room-details-service-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    width: 18%;
+    padding: 10px 0;
+}
+
+.room-details-service-item-icon{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--text-color-yellow);
+}
+
+.room-details-service-item-name{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.room-details-intro{
+    color: white;
+    font-size: 16px;
+}
+
+/* Reservation */
+
+.room-reservation-header-title{
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.room-reservation-body{
+    margin-top: 20px;
+}
+
+.room-reservation-form-group{
+    margin-bottom: 20px;
+}
+
+.room-reservation-form-label{
+    display: block;
+    color: white;
+}
+
+.room-reservation-form-input{
+    display: block;
+    color: var(--text-color-yellow-2);
+    width: 50%;
+    height: 30px;
+    background-color: rgba(20, 20, 20, 0.994);
+    outline: none;
+    border: 1px solid var(--text-color-yellow-2);
+}
+
+.room-reservation-form-button{
+    margin-top: 10px;
+    height: 40px;
+    background-color: var(--text-color-yellow);
+    color: white;
+}
+.room-reservation-form-button:hover{
+    opacity: 0.9;
+}
+
+.room-reservation-contact{
+    margin-top: 20px;
+}
+
+.room-reservation-contact-body{
+    margin-top: 20px;
+    width: 60%;
+    padding: 20px 0;
+    background-color: black;
+    text-align: center;
+    border: 1px solid var(--text-color-yellow-2);
+}
+
+.room-reservation-contact-icon{
+    color: var(--text-color-yellow);
+    font-size: 30px;
+}
+
+.room-reservation-contact-phone{
+    color: white;
+}
+
+.room-reservation-contact p{
+    color: white;   
+}
